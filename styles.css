@@ -1,0 +1,164 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  background-color: #fff;
+}
+
+.todos {
+  width: 100%;
+  max-width: 500px;
+  
+  margin: 0 auto;
+}
+
+.todos_header {
+
+}
+
+.todos_header_title {
+  height: 60px;
+  width: 100%;
+  border: 5px solid #000;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.todos_top {
+  display: flex;
+  justify-content: flex-start;
+  height: 60px;
+}
+
+.todos_top_input {
+  flex-grow: 1;
+  padding-left: 10px;
+  border: 5px solid #000;
+  font-size: 18px;
+}
+
+.todos_top_input::-ms-input-placeholder {
+  color: #000;
+}
+
+.todos_top_input::placeholder  {
+  color: #000;
+}
+
+.todos_top_add-btn {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  font-size: 48px;
+  font-weight: bold;
+  background: #fff;
+  border: 5px solid #000;
+  border-left: 0;
+  text-align: center;
+  line-height: 31px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+.todos_top_add-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+
+.todos_body {
+  min-height: 400px;
+  border: 3px solid #000;
+  border-top: 0;
+}
+
+.todos_todo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 40px;
+  border-bottom: 3px solid #000;
+}
+
+.todos_todo_label {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 40px;
+  padding-left: 20px;
+  word-break: break-all;
+  cursor: pointer;
+}
+
+.todos_todo_checkbox {
+  opacity: 0;
+}
+
+.todos_todo_checkbox:checked ~ .todos_todo_custom-checkbox {
+  background-color: #000;
+}
+
+.todos_todo_custom-checkbox {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  height: 15px;
+  width: 15px;
+  border: 2px solid #000;
+  background-color: #fff;
+}
+
+.todos_todo_custom-checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.todos_todo_checkbox:checked ~ .todos_todo_custom-checkbox:after {
+  display: block;
+}
+
+.todos_todo_custom-checkbox:after {
+  left: 3px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.todos_todo_task {
+  font-size: 18px;
+}
+
+.todos_todo_label:hover .todos_todo_task,
+.todos_todo_checkbox:checked ~ .todos_todo_task {
+  text-decoration: line-through;
+}
+
+.todo_todos_remove {
+  width: 60px;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 300ms ease-out;
+}
+
+.todo_todos_remove:hover {
+  color: #D0021B;
+}

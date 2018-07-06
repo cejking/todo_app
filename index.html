@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Exercise - 3</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="todos">
+    <header class="todos_header">
+      <h1 class="todos_header_title">Todo List</h1>
+    </header>
+    <div class="todos_top">
+      <input type="text" class="todos_top_input" id="userInput" placeholder="Enter todo">
+      <button class="todos_top_add-btn" id="addButton">+</button>
+    </div>
+    <div class="todos_body" id="todoList">
+      <div class="todos_todo">
+          <label class="todos_todo_label">
+            <input class="todos_todo_checkbox" type="checkbox">
+            <span class="todos_todo_custom-checkbox"></span>
+            <p class="todos_todo_task">Get Jim from school</p>
+          </label>
+          <button class="todo_todos_remove">X</button>
+      </div>
+
+      <div class="todos_todo">
+          <label class="todos_todo_label">
+            <input class="todos_todo_checkbox" type="checkbox">
+            <span class="todos_todo_custom-checkbox"></span>
+            <p class="todos_todo_task">Go shopping</p>
+          </label>
+          <button class="todo_todos_remove">X</button>
+      </div>
+    </div>
+  </section>
+  <script src="app.js"></script>
+</body>
+</html>
