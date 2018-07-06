@@ -29,7 +29,6 @@ function createTodo(message) {
     var para = document.createElement("p");
     para.classList.add("todos_todo_task");
     para.innerText = message;
-    todos.push({todo: para.innerText, complete: false});
     label.appendChild(para);
 
     var deleteButton = document.createElement("button");
@@ -94,9 +93,3 @@ for(var i = 0; i < deleteButtons.length; i++) {
 
 // Mark a todo as completed (cross out the text of the todo)
 // Remove a todo
-
-var instructors = ["Elie", "Matt", "Tim"];
-
-localStorage.setItem("instructors", JSON.stringify(instructors));
-var jim = JSON.parse(localStorage.getItem("instructors"));
-console.log(jim)
