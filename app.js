@@ -91,13 +91,21 @@ function addTodoStartUp(message, fromLoad) {
 
 // Delete Todos function
 function removeTodo(toBeRemovedElement) {
+    // Get todo list
     var todoList = document.querySelector("#todoList");
+    // Remove given elements parent element (the div wrapper)
     todoList.removeChild(toBeRemovedElement.target.parentElement); 
 }
 
-// Add Delete Button event listener
+// Add Delete Button event listener to new todos
 function addDeleteButtonEventListener(deleteButton) {
     deleteButton.addEventListener("click", function(e) {
+        var getParent = e.target.parentElement;
+        var position = 0;
+        for (var i=0; (getParent=getParent.previousSibling); i++) {
+            position = i;
+        };
+        todos.splice(position, 1);
         removeTodo(e);
     });
     
@@ -118,13 +126,6 @@ addButton.addEventListener("click", function() {
     addTodo();
 });
 
-// Delete Buttons Event listeners
-var deleteButtons = document.querySelectorAll('.todo_todos_remove');
-for(var i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener("click", function(e) {
-        removeTodo(e);
-    });
-}
 
 // var todoLabels = document.querySelectorAll()
 
