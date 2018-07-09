@@ -7,17 +7,32 @@
         FUNCTIONS
 **************************************
 **************************************/
-var todos = [
-    {name: 'Go get lunch', completed: false},
-    {name: 'Feed cat', completed: false}
-];
+
+
+if(localStorage.getItem("todos") != null) {
+    console.log(localStorage.getItem("todos"));
+    var todos = JSON.parse(window.localStorage.getItem("todos"));
+} else {
+    var todos = [
+        {name: 'Go get lunch', completed: false},
+        {name: 'Feed cat', completed: false}
+    ];
+}
+
+
 
 
 window.addEventListener('load', function(){
     for(var i = 0; i < todos.length; i++) {
-        addTodoStartUp(todos[i].name, true);
+       addTodoStartUp(todos[i].name, true);
     }
 });
+
+function addToLocalStorage() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    todos = JSON.parse(localStorage.getItem("todos"));
+    console.log(todos);
+};
 
 
 // Create todos function
@@ -49,6 +64,7 @@ function createTodo(message, fromLoad) {
     var inputText = message;
     if(!fromLoad) {
         todos.push({name: inputText, completed: false});
+        addToLocalStorage();
     }
     para.innerText = message;
     label.appendChild(para);
@@ -76,6 +92,7 @@ function addTodo() {
     var newTodo = createTodo(userInput, false);
     // Append new todo to todo list body
     todoList.appendChild(newTodo);
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 // Add Todo Function
@@ -86,6 +103,7 @@ function addTodoStartUp(message, fromLoad) {
     var newTodo = createTodo(message, fromLoad);
     // Append new todo to todo list body
     todoList.appendChild(newTodo);
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 
@@ -106,9 +124,11 @@ function addDeleteButtonEventListener(deleteButton) {
             position = i;
         };
         todos.splice(position, 1);
+        addToLocalStorage();
         removeTodo(e);
     });
     
+    localStorage.setItem("todos", JSON.stringify(todos));
     return deleteButton;
 }
 
@@ -124,6 +144,7 @@ function addDeleteButtonEventListener(deleteButton) {
 var addButton = document.getElementById('addButton');
 addButton.addEventListener("click", function() {
     addTodo();
+    localStorage.setItem("todos", JSON.stringify(todos));
 });
 
 
