@@ -1,7 +1,3 @@
-// For this assignment you will be combining your knowledge of DOM access and events to build a todo app!
-
-// As a user, you should be able to:
-
 /*************************************
  ************************************* 
         FUNCTIONS
@@ -9,8 +5,8 @@
 **************************************/
 
 
+// Check to see if any todos in local, and setting todos.
 if(localStorage.getItem("todos") != null) {
-    console.log(localStorage.getItem("todos"));
     var todos = JSON.parse(window.localStorage.getItem("todos"));
 } else {
     var todos = [
@@ -20,20 +16,71 @@ if(localStorage.getItem("todos") != null) {
 }
 
 
-
-
 window.addEventListener('load', function(){
     for(var i = 0; i < todos.length; i++) {
        addTodoStartUp(todos[i].name, true);
     }
+
+    // Original check off todos array to add custom styling that are saved in local storage as complete
+    checked();
+
+    // Adds event listeners to all todos, and applies custom checkbox styling when selected as complete, and remove styling when unchecked.
+    addCompleteEventListener();
 });
 
+// Loops through all todos and checks if completed and adds styling to those that are.
+function addCompleteEventListener() {
+    // Set completed value when click on a todo
+    var todosLabel = document.querySelectorAll('.todos_todo_label');
+    for(var j = 0; j < todosLabel.length; j++) {
+        todosLabel[j].addEventListener('click', function(e) {
+            if(e.target.type === "checkbox") {
+                var getParent = e.target.parentElement.parentElement;
+                // Get position of todo in list, by checking how many siblings come before the todo.
+                var position = 0;
+                for (var i=0; (getParent=getParent.previousSibling); i++) {
+                    position = i;
+                }; 
+                var getTodosCheckedCustom = document.querySelectorAll('.todos_todo_custom-checkbox');
+                if(todos[position].completed === false) {
+                    // update todos array
+                    todos[position].completed = true;
+                    // Add custom checkbox styling
+                    getTodosCheckedCustom[position].classList.add('js-checked');
+                } else {
+                    // update todos array
+                    todos[position].completed = false;
+                    // Remove custom checkbox styling
+                    getTodosCheckedCustom[position].classList.remove('js-checked');
+                }
+                addToLocalStorage();
+            }
+        });
+    }
+}
+
+
+// Original check off todos array to add custom styling that are saved in local storage as complete
+function checked() {
+    var getTodosChecked = document.querySelectorAll('.todos_todo_checkbox');
+    var getTodosCheckedCustom = document.querySelectorAll('.todos_todo_custom-checkbox');
+    for(var i = 0; i < todos.length; i++) {
+        if(todos[i].completed === true) {
+            getTodosChecked[i].checked = true;
+            getTodosCheckedCustom[i].classList.add('js-checked');
+        } else {
+            getTodosCheckedCustom[i].classList.remove('js-checked');
+            getTodosChecked[i].checked = false;
+        }
+    }
+}
+
+
+// Add to local storage function
 function addToLocalStorage() {
     localStorage.setItem("todos", JSON.stringify(todos));
     todos = JSON.parse(localStorage.getItem("todos"));
-    console.log(todos);
 };
-
 
 // Create todos function
 function createTodo(message, fromLoad) {
@@ -64,6 +111,7 @@ function createTodo(message, fromLoad) {
     var inputText = message;
     if(!fromLoad) {
         todos.push({name: inputText, completed: false});
+        // Update local storage with new todo
         addToLocalStorage();
     }
     para.innerText = message;
@@ -93,6 +141,8 @@ function addTodo() {
     // Append new todo to todo list body
     todoList.appendChild(newTodo);
     localStorage.setItem("todos", JSON.stringify(todos));
+
+    addCompleteEventListener();
 }
 
 // Add Todo Function
@@ -146,16 +196,3 @@ addButton.addEventListener("click", function() {
     addTodo();
     localStorage.setItem("todos", JSON.stringify(todos));
 });
-
-
-// var todoLabels = document.querySelectorAll()
-
-
-// Mark a todo as completed (cross out the text of the todo)
-// Remove a todo
-
-// var instructors = ["Elie", "Matt", "Tim"];
-
-// localStorage.setItem("instructors", JSON.stringify(instructors));
-// var jim = JSON.parse(localStorage.getItem("instructors"));
-// console.log(jim)

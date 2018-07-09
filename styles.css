@@ -101,10 +101,7 @@ body {
   opacity: 0;
 }
 
-.todos_todo_checkbox:checked ~ .todos_todo_custom-checkbox {
-  background-color: #000;
-}
-
+.js-checked,
 .todos_todo_custom-checkbox {
   position: absolute;
   top: 50%;
@@ -116,16 +113,24 @@ body {
   background-color: #fff;
 }
 
+.js-checked,
+.todos_todo_checkbox:checked ~ .todos_todo_custom-checkbox {
+  background-color: #000;
+}
+
+.js-checked:after,
 .todos_todo_custom-checkbox:after {
   content: "";
   position: absolute;
   display: none;
 }
 
+.js-checked:after,
 .todos_todo_checkbox:checked ~ .todos_todo_custom-checkbox:after {
   display: block;
 }
 
+.js-checked:after,
 .todos_todo_custom-checkbox:after {
   left: 3px;
   top: 0px;
