@@ -16,9 +16,9 @@ body {
   margin: 0 auto;
 }
 
-.todos_header {
 
-}
+
+
 
 .todos_header_title {
   height: 60px;
@@ -66,11 +66,12 @@ body {
   transition: all 200ms ease-out;
 }
 
-.todos_top_add-btn:hover {
-  background: #000;
-  color: #fff;
+@media (hover) {
+  .todos_top_add-btn:hover {
+    background: #000;
+    color: #fff;
+  }
 }
-
 
 .todos_body {
   min-height: 400px;
@@ -147,9 +148,14 @@ body {
   font-size: 18px;
 }
 
-.todos_todo_label:hover .todos_todo_task,
 .todos_todo_checkbox:checked ~ .todos_todo_task {
   text-decoration: line-through;
+}
+
+@media (hover) {
+  .todos_todo_label:hover .todos_todo_task {
+    text-decoration: line-through;
+  }
 }
 
 .todo_todos_remove {
@@ -164,6 +170,8 @@ body {
   transition: color 300ms ease-out;
 }
 
-.todo_todos_remove:hover {
-  color: #D0021B;
+@media (hover) {
+  .todo_todos_remove:hover {
+    color: #D0021B;
+  }
 }
